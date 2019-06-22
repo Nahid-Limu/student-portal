@@ -145,14 +145,14 @@ margin-left: 4px;
 					</div>
 				</form>
 			</div>
-			<div class="card-footer">
+			{{--  <div class="card-footer">
 				<div class="d-flex justify-content-center links">
 					Dont have an account?<a href="#">Sign Up</a>
 				</div>
 				<div class="d-flex justify-content-center">
 					<a href="#">Forgot your password?</a>
 				</div>
-			</div>
+			</div>  --}}
 		</div>
 	</div>
 </div>
