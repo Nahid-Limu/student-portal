@@ -17,8 +17,8 @@
         <ol class="breadcrumb page-breadcrumb pull-right">
             <li><i class="fa fa-home"></i>&nbsp;<a href="{{route('dashbord')}}">Home</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li><a href="#">Department</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li class="active">Department List</li>
+            {{--  <li><a href="#">Department</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>  --}}
+            <li class="active">Dashboard</li>
         </ol>
     </div>
     <!--END TITLE & BREADCRUMB PAGE-->

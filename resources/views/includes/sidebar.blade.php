@@ -15,7 +15,7 @@ $url=request()->route()->getName();
                 <img src="{{ asset('images/profileImg.jpg') }}" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <span>Welcome,</span>
+                <span>&nbsp</span>
                 <h2>{{strtoupper(Auth::user()->name)}}</h2>
             </div>
         </div>
@@ -32,6 +32,7 @@ $url=request()->route()->getName();
                         <i class="fa fa-home"></i> Dashbord <span class="fa fa-chevron-down"></span>
                         </a>
                     </li>
+
                     <li><a><i class="fa fa-user"></i> Teacher <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             
@@ -43,15 +44,14 @@ $url=request()->route()->getName();
                     <li><a><i class="fa fa-users"></i> Student <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             
-                            {{--  <li><a href="index3.html">Dashboard3</a></li>  --}}
-                            <li ><a href="">All Student</a></li>
+                            <li @if($url === 'student_view') class="active" @endif><a href="{{route('student_view')}}">All Student</a></li>
                         </ul>
                     </li>
 
-                    <li><a><i class="fa fa-file"></i> Course <span class="fa fa-chevron-down"></span></a>
+                    {{--  <li><a><i class="fa fa-file"></i> Course <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             
-                            {{--  <li><a href="index3.html">Dashboard3</a></li>  --}}
+                            
                             <li ><a href="">Course Assign To Teacher</a></li>
                             <li ><a href="">Course Assign To Student</a></li>
                         </ul>
@@ -60,13 +60,11 @@ $url=request()->route()->getName();
                     <li><a><i class="fa fa-cogs"></i> Settings <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             
-                            {{--  <li><a href="index3.html">Dashboard3</a></li>  --}}
                             <li ><a href="">Course</a></li>
                             <li ><a href="">Depeartment</a></li>
-                            {{--  <li ><a href="">Course</a></li>  --}}
-                            
+    
                         </ul>
-                    </li>
+                    </li>  --}}
                     
                 </ul>
             </div>

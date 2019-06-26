@@ -14,4 +14,9 @@
 
 <link href="{{ asset('vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
-   
+
+    <style>
+        .site_title{
+            text-align: center;
+        }        
+    </style>

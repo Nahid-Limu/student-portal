@@ -55,7 +55,7 @@ class TeacharController extends Controller
             return response()->json(['errors' => $error->errors()->all()]);
         }
         
-        $cms_id = hexdec(uniqid());
+        $cms_id = "TEA-".(rand(10,500));
         //$cms_id = bchexdec(uniqid());
         $create_teacher = DB::table('teacher')->insert([
             'cms_id'=>$cms_id,
@@ -74,7 +74,7 @@ class TeacharController extends Controller
             DB::table('users')->insert([
                 'name'=>$request->name,
                 'email'=>$request->email,
-                'password'=>bcrypt('12345678'),
+                'password'=>bcrypt('admin'),
                 'is_permission'=>2,           
                 'created_at'=>Carbon::now()->toDateTimeString(),
                 'updated_at'=>Carbon::now()->toDateTimeString()
@@ -169,7 +169,7 @@ class TeacharController extends Controller
                 // return redirect()->back();
                 return response()->json(['error' => 'Could Not Upload. File Size Limit Exceeded.']);
             }
-            $name=$unique."_".$file->getClientOriginalExtension();
+            $name='teacher'.'-'.time().'.'.$file->getClientOriginalExtension();
             $file->move('teacher_images',$name);
             DB::table('teacher')->where('id','=',$request->id)->update([
                 'image'=>$name,
