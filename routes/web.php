@@ -39,5 +39,19 @@ Route::group(['middleware'=>'auth'],function (){
     // Route::get('/teachers/profile/{id}', 'TeacharController@teacher_profile')->name('teacher_profile');
     // Route::post('/teachers/changePhoto','TeacharController@update_photo')->name('update_photo');
     //=================================Student End===================================
+
+    //==================================Department Start================================
+    Route::get('/department', 'DepeartmentController@department_view')->name('department_view');
+    Route::post('/department/create', 'DepeartmentController@create_department')->name('create_department');
+    Route::get('department_edit/{id}','DepeartmentController@edit_department')->name('edit_department');
+    Route::post('/department/update','DepeartmentController@update_department')->name('update_department');
+    //=================================Department End===================================
+
+    //==================================Course Start================================
+    Route::get('/course', 'CourseController@course_view')->name('course_view');
+    Route::post('/course/create', 'CourseController@create_course')->name('create_course');
+    Route::get('course_edit/{id}','CourseController@edit_course')->name('edit_course');
+    Route::post('/course/update','CourseController@update_course')->name('update_course');
+    //=================================Course End===================================
 });
 

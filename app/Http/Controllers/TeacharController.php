@@ -29,6 +29,7 @@ class TeacharController extends Controller
                         return $button;
                     })
                     ->rawColumns(['name','action'])
+                    ->addIndexColumn()
                     ->make(true);
         }
         return view('backend.teacher.teacher_list');

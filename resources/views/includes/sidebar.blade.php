@@ -48,7 +48,7 @@ $url=request()->route()->getName();
                         </ul>
                     </li>
 
-                    {{--  <li><a><i class="fa fa-file"></i> Course <span class="fa fa-chevron-down"></span></a>
+                     <li><a><i class="fa fa-file"></i> Assign Course <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             
                             
@@ -60,11 +60,11 @@ $url=request()->route()->getName();
                     <li><a><i class="fa fa-cogs"></i> Settings <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             
-                            <li ><a href="">Course</a></li>
-                            <li ><a href="">Depeartment</a></li>
+                            <li @if($url === 'department_view') class="active" @endif><a href="{{route('department_view')}}">Depeartment</a></li>
+                            <li @if($url === 'course_view') class="active" @endif><a href="{{route('course_view')}}">Course</a></li>
     
                         </ul>
-                    </li>  --}}
+                    </li> 
                     
                 </ul>
             </div>

@@ -55,12 +55,12 @@
                 </div>
                 <div class="x_content table-responsive">
 
-                    <table id="teacher_list" class="table table-striped table-bordered ">
+                    <table id="student_list" class="table table-striped table-bordered ">
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Designation</th>
-                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Depeartment</th>
                                 <th>Address</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -88,12 +88,12 @@
     $(document).ready(function(){
             //$('#teacher_list').DataTable();
             //lode teachers list
-            $('#teacher_list').DataTable({
+            $('#student_list').DataTable({
                 processing: true,
                 serverSide: true,
                 "order": [[ 0, "desc" ]],
                 ajax:{
-                url: "{{ route('teacher_view') }}",
+                url: "{{ route('student_view') }}",
                 },
                 columns:[
                 {

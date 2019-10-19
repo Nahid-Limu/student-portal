@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Teacher List')
+@section('title', 'Course List')
 
 @section('extra_css')
 @endsection
@@ -12,13 +12,13 @@
     <div class="row">
         <div class="page-title" style="font-size: 30px;">
             <i class="fa fa-list"></i>
-            Teacher
+            Course
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
             <li><i class="fa fa-home"></i>&nbsp;<a href="{{route('dashbord')}}">Home</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li><a href="#">Teacher</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li class="active">Teacher List</li>
+            <li><a href="#">Student</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+            <li class="active">Course List</li>
         </ol>
     </div>
     <!--END TITLE & BREADCRUMB PAGE-->
@@ -28,11 +28,11 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2><i class="fa fa-bars"></i> Teacher List</h2>
+                    <h2><i class="fa fa-bars"></i> Student List</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <div class="col-md-6" style="text-align: right;">
                             <a href="" class="add-new-modal btn btn-success btn-round btn-xs" data-toggle="modal"
-                                data-target="#createTeacher"> <i class="fa fa-plus"></i> Add New</a>
+                                data-target="#createCourse"> <i class="fa fa-plus"></i> Add New</a>
                         </div>
                         <div class="col-md-6" style="text-align: right;">
                                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -55,14 +55,12 @@
                 </div>
                 <div class="x_content table-responsive">
 
-                    <table id="teacher_list" class="table table-striped table-bordered ">
+                    <table id="course_list" class="table table-striped table-bordered ">
                         <thead>
                             <tr>
                                 <th>SN</th>
-                                <th>Name</th>
-                                <th>Designation</th>
-                                <th>Phone</th>
-                                <th>Address</th>
+                                <th>Course Name</th>
+                                <th>Course Code</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -76,8 +74,8 @@
 
         <div class="clearfix"></div>
         <!-- Modal Start -->
-        @include('backend.teacher.modal.create')
-        @include('backend.teacher.modal.edit')
+        @include('backend.course.modal.create')
+        @include('backend.course.modal.edit')
         <!-- Modal End -->
     </div>
 </div>
@@ -87,14 +85,14 @@
 @section('extra_js')
 <script>
     $(document).ready(function(){
-            //$('#teacher_list').DataTable();
-            //lode teachers list
-            $('#teacher_list').DataTable({
+            //$('#department_list').DataTable();
+            //lode department_list
+            $('#course_list').DataTable({
                 processing: true,
                 serverSide: true,
                 "order": [[ 0, "desc" ]],
                 ajax:{
-                url: "{{ route('teacher_view') }}",
+                url: "{{ route('course_view') }}",
                 },
                 columns:[
                 { 
@@ -102,20 +100,12 @@
                     name: 'DT_RowIndex' 
                 },
                 {
-                    data: 'name',
-                    name: 'name'
+                    data: 'course_name',
+                    name: 'course_name'
                 },
                 {
-                    data: 'designation',
-                    name: 'designation'
-                },
-                {
-                    data: 'phone',
-                    name: 'phone'
-                },
-                {
-                    data: 'address',
-                    name: 'address'
+                    data: 'course_code',
+                    name: 'course_code'
                 },
                 {
                     data: 'status',
@@ -132,13 +122,13 @@
                 ]
             });
 
-            //add teacher
-            $( "#add" ).click(function() {
+            //add course
+            $( "#create" ).click(function() {
                 var _token = '{{ csrf_token() }}';
-                var myData = $('#create_teacher_modal_form').serialize();
+                var myData = $('#create_course_modal_form').serialize();
                 //alert(_token);
                 $.ajax({
-                    url:"{{route('create_teacher')}}",
+                    url:"{{route('create_course')}}",
                     method:"post",
                     data: myData,
                     success:function (response) {
@@ -157,29 +147,29 @@
                         if(response.success)
                         {
                         swal(response.success, "", "success");
-                        $('#create_teacher_modal_form')[0].reset();
-                        $('#teacher_list').DataTable().ajax.reload();
-                        $('#createTeacher').modal('hide');
+                        $('#create_course_modal_form')[0].reset();
+                        $('#course_list').DataTable().ajax.reload();
+                        $('#createCourse').modal('hide');
                         }
                         
                     }
                 });
             });
 
-            //Edit Teacher
+            //Edit course
             $(document).on('click', '.edit', function(){
                 var id = $(this).attr('id');
                 //alert(id);
                 //$('#form_result').html('');
                 $.ajax({
                 type: "GET",
-                url:"{{url('teachers_edit')}}"+"/"+id,
+                url:"{{url('course_edit')}}"+"/"+id,
                 dataType:"json",
                 success:function(response){
-                    console.log(response);
-                    $('#edit_name').val(response.name);
-                    $('#edit_phone').val(response.phone);
-                    $('#edit_designation').val(response.designation);
+                    //console.log(response);
+                    $('#edit_course_name').val(response.course_name);
+                    $('#edit_course_code').val(response.course_code);
+                    $('#edit_remarks').val(response.remarks);
                     $('#id').val(response.id);
                   
                     $("#status option[value=" + response.status + "]").prop('selected', true);
@@ -187,13 +177,14 @@
                 })
             });
 
-            //update Teacher
+            //update course
             $( "#update" ).click(function() {
                 var _token = '{{ csrf_token() }}';
-                var editData = $('#edit_teacher_modal_form').serialize();
+                //alert(_token);
+                var editData = $('#edit_course_modal_form').serialize();
                 //alert(department_name);
                     $.ajax({
-                        url:"{{route('update_teacher')}}",
+                        url:"{{route('update_course')}}",
                         method:"post",
                         data: editData,
                         success:function (response) {
@@ -208,17 +199,21 @@
                             html += '</div>';
                             $('#edit_form_result').html(html);
                             }
+                            if(response.warning)
+                            {
+                                swal(response.warning, "", "warning");
+                            }
                             if(response.falied)
                             {
-                                swal(response.falied, "", "warning");
+                                swal(response.falied, "", "error");
                             }
                             if(response.success)
                             {
                                 swal(response.success, "", "success");
                                 $('#edit_form_result').hide();
-                                $('#edit_teacher_modal_form')[0].reset();
-                                $('#teacher_list').DataTable().ajax.reload();
-                                $('#editTeacher').modal('hide');
+                                $('#edit_course_modal_form')[0].reset();
+                                $('#course_list').DataTable().ajax.reload();
+                                $('#editCourse').modal('hide');
                             }
                         }
                     });

@@ -15,7 +15,10 @@ class DashboardController extends Controller
     {
         $user = DB::table('users')->count();
         $teacher = DB::table('teacher')->count();
-        return view('dashbord', compact('user','teacher'));
+        $student = DB::table('student')->count();
+        $department = DB::table('department')->count();
+        $course = DB::table('course')->count();
+        return view('dashbord', compact('user','teacher','student','department','course'));
     }
 
     public function change_password(Request $request)
