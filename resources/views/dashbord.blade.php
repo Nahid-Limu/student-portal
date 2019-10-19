@@ -211,8 +211,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <canvas class="canvasDoughnut" height="140" width="140"
-                                    style="margin: 15px 10px 10px 0"></canvas>
+                                <canvas id="activeInactiveEmployeeRatio" height="140" width="140"
+                                    ></canvas>
                             </td>
                             <td>
                                 <table class="tile_info">
@@ -315,4 +315,41 @@
 @endsection
 
 @section('extra_js')
+
+<script>
+     var ctx1 = document.getElementById("activeInactiveEmployeeRatio").getContext('2d');
+     var myChart1 = new Chart(ctx1, {
+         type: 'doughnut',
+         data: {
+             labels: ["", "",""],
+                      legend: {
+                          labels: {
+                              fontColor: "white",
+                              fontSize: 18
+                          }
+                    },
+             datasets: [{
+                 label: '# ',
+                 data: [19,30 ,12],
+                 backgroundColor: [
+                     'rgba(0,204,0,0.7)',
+                     'rgba(233,30,99, 0.7)'
+                 ],
+                 borderColor: [
+                     'rgba(1,1,1,0.1)',
+                     'rgba(1,1,1,0.1)'
+
+                 ],
+                 borderColor: [
+                     'rgba(255, 0, 0, 0.4)',
+                     'rgba(255, 0, 0, 0.4)'
+
+                 ],
+                 borderWidth: 1
+              }]
+         },
+         options: {
+         }
+     });
+    </script>
 @endsection
