@@ -6,7 +6,7 @@
                 <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
                 <h4 id="modal-responsive-label" class="modal-title">Edit Teacher</h4>
             </div>
-            <form id="edit_teacher_modal_form">
+            <form id="edit_student_modal_form">
                 @csrf
                 <div class="modal-body">
                     <!-- Error list Start -->
@@ -34,27 +34,20 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="edit_phone" class="pull-left">
-                                    <h5>Pnone:</h5>
+                                <label for="phone" class="pull-left">
+                                    <h5>Depeartment:</h5>
                                 </label>
                                 <div>
-                                    <input class="form-control select2Style" type="tel" name="edit_phone"
-                                        id="edit_phone">
+                                    <select id="edit_department_id" name="edit_department_id"  class="form-control" style="width: 100%">
+                                        <option value="">Select Department</option>
+                                    </select>
                                     <b class="form-text text-danger pull-left" id="transportationError"></b>
                                 </div>
                             </div>
+                            
                         </div>
                         <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="edit_designation" class="pull-left">
-                                    <h5>Designation:</h5>
-                                </label>
-                                <div>
-                                    <input class="form-control select2Style" type="text" name="edit_designation"
-                                        id="edit_designation">
-                                    <b class="form-text text-danger pull-left" id="transportationError"></b>
-                                </div>
-                            </div>
+                            
                             <div class="col-md-6">
                                 <label for="status" class="pull-left">
                                     <h5>Status:</h5>

@@ -51,9 +51,8 @@ $url=request()->route()->getName();
                      <li><a><i class="fa fa-file"></i> Assign Course <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             
-                            
-                            <li ><a href="">Course Assign To Teacher</a></li>
-                            <li ><a href="">Course Assign To Student</a></li>
+                            <li @if($url === 'courseTeacher_view') class="active" @endif><a href="{{route('courseTeacher_view')}}">Course Assign To Teacher</a></li>
+                            {{--  <li ><a href="">Course Assign To Student</a></li>  --}}
                         </ul>
                     </li>
 

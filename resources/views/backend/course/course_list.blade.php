@@ -17,7 +17,7 @@
         <ol class="breadcrumb page-breadcrumb pull-right">
             <li><i class="fa fa-home"></i>&nbsp;<a href="{{route('dashbord')}}">Home</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li><a href="#">Student</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+            <li><a href="#">Course</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
             <li class="active">Course List</li>
         </ol>
     </div>
@@ -85,6 +85,17 @@
 @section('extra_js')
 <script>
     $(document).ready(function(){
+            //get department start
+            $.ajax({
+                url:"{{route('ajax.get_department')}}",
+                method:"get",
+                success:function (response) {
+                    console.log(response);
+                    $('#department_id').html(response);
+                }
+            });
+            //get department end
+
             //$('#department_list').DataTable();
             //lode department_list
             $('#course_list').DataTable({
@@ -217,6 +228,10 @@
                             }
                         }
                     });
+                });
+
+                $("#department_id").select2({
+                    placeholder: "Select Department"
                 });
 
         });

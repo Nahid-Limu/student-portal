@@ -13,6 +13,7 @@ class DashboardController extends Controller
 {
     public function dashbord()
     {
+        //dd(Auth::user()->is_permission);
         $user = DB::table('users')->count();
         $teacher = DB::table('teacher')->count();
         $student = DB::table('student')->count();

@@ -8,9 +8,19 @@ use Auth;
 use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Str;
+use App\Repositories\Settings;
 
 class DepeartmentController extends Controller
 {
+    protected $settings;
+
+    public function __construct()
+    {
+        // create object of settings class
+        $this->settings = new Settings();
+    }
+
+
     public function department_view()
     {
         //echo "Tea-".(rand(10,500));
@@ -118,5 +128,13 @@ class DepeartmentController extends Controller
         // }
         
         
+    }
+
+    public function get_department()
+    {  
+        $department = $this->settings->all_department();
+        //dd($department);
+        return view('backend.ajax.get_department',compact('department'));
+       
     }
 }

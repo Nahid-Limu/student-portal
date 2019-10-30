@@ -59,6 +59,7 @@
                         <thead>
                             <tr>
                                 <th>SN</th>
+                                <th>CMS ID</th>
                                 <th>Name</th>
                                 <th>Designation</th>
                                 <th>Phone</th>
@@ -100,6 +101,10 @@
                 { 
                     data: 'DT_RowIndex', 
                     name: 'DT_RowIndex' 
+                },
+                {
+                    data: 'cms_id',
+                    name: 'cms_id'
                 },
                 {
                     data: 'name',

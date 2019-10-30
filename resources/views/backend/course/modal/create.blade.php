@@ -1,4 +1,4 @@
-<div id="createCourse" tabindex="-1" role="dialog" aria-labelledby="modal-responsive-label" aria-hidden="true"
+<div id="createCourse"  role="dialog" aria-labelledby="modal-responsive-label" aria-hidden="true"
     class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content animated bounceInLeft">
@@ -22,6 +22,19 @@
                     @endif
                     <!-- Error list End -->
                     <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="branch_id" class="pull-left"><h5>Select Department<span class='require'>*</span></h5></label>
+                                <div>
+                                    <select id="department_id" name="department_id"  class="form-control" style="width: 100%">
+                                        <option value="">Select Department</option>
+                                    </select>
+                                    <b class="form-text text-danger pull-left" id="studentError"></b>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
                         <div class="form-group">
                             <div class="col-md-6">
                                 <label for="course_name" class="pull-left">

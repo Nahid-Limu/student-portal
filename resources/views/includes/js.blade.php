@@ -32,4 +32,5 @@
 <script src="{{ asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
 <script src="{{ asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
 
-<script src="{{ asset('js/Chart.js') }}"></script>
+<script src="{{ asset('vendors/js/Chart.js') }}"></script>
+<script src="{{ asset('vendors/js/select2.js') }}"></script>

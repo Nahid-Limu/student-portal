@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Profile')
+@section('title', 'Student Profile')
 
 @section('extra_css')
 <style>
@@ -24,7 +24,7 @@
             <li><i class="fa fa-home"></i>&nbsp;<a href="{{route('dashbord')}}">Home</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
             <li><a href="#">Teacher</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li class="active">Teacher Profile</li>
+            <li class="active">Student Profile</li>
         </ol>
     </div>
     <!--END TITLE & BREADCRUMB PAGE-->
@@ -45,7 +45,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Treacher Profile</h2>
+                    <h2>Student Profile</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -69,8 +69,8 @@
                         <div class="profile_img">
                             <div id="crop-avatar">
                                 <!-- Current avatar -->
-                                @if ($teacher->image)
-                                <img class="img-responsive avatar-view" src="{{asset('teacher_images').'/'.$teacher->image }}"
+                                @if ($student->image)
+                                <img class="img-responsive avatar-view" src="{{asset('student_images').'/'.$student->image }}"
                                 alt="Avatar" title="Change the avatar" style="width: 180px; height: 220px;">
                                 @else
                                 <img class="img-responsive avatar-view" src="{{ asset('images/noProfilePic.jpg') }}"
@@ -98,16 +98,22 @@
                             <li>
                                 <p><strong>CMS ID:</strong></p>
                                 <p style="margin-top: 5px;"> <span><i class="fa fa-user user-profile-icon"></i>
-                                        {{$teacher->cms_id}}</span> </p>
+                                    {{$student->cms_id}}</span> </p>
                             </li>
 
                             <li style="margin-top: 10px;">
-                                <p><strong>Designation:</strong></p>
+                                <p><strong>Student Name:</strong></p>
                                 <p style="margin-top: 5px;"> <span><i class="fa fa-briefcase user-profile-icon"></i>
-                                        {{$teacher->designation}}</span> </p>
+                                    {{$student->name}} </span> </p>
 
                             </li>
 
+                            <li style="margin-top: 10px;">
+                                <p><strong>Department:</strong></p>
+                                <p style="margin-top: 5px;"> <span><i class="fa fa-briefcase user-profile-icon"></i>
+                                    {{$student->department_name}} </span> </p>
+
+                            </li>
                         </ul>
 
                         <br />
@@ -158,7 +164,7 @@
                                                                     class="col-md-5 col-sm-4 col-xs-5 control-label">Name:
                                                                 </label>
                                                                 <div class="col-md-7 col-sm-8 col-xs-7">
-                                                                    {{$teacher->name}} &nbsp
+                                                                    {{$student->name}} &nbsp
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -168,11 +174,12 @@
                                                                     class="col-md-5 col-sm-4 col-xs-5 control-label">Phone:
                                                                 </label>
                                                                 <div class="col-md-7 col-sm-8 col-xs-7">
-                                                                    +88{{$teacher->phone}} &nbsp
+                                                                    {{$student->phone}} &nbsp
                                                                 </div>
 
                                                             </div>
                                                         </div>
+                                                        
                                                     </div>
 
                                                     <div class="form-group">
@@ -182,17 +189,17 @@
                                                                     class="col-md-5 col-sm-4 col-xs-5 control-label">Email:
                                                                 </label>
                                                                 <div class="col-md-7 col-sm-8 col-xs-7">
-                                                                    {{$teacher->email}} &nbsp
+                                                                    {{$student->email}} &nbsp
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for=""
-                                                                    class="col-md-5 col-sm-4 col-xs-5 control-label">Designation:
+                                                                    class="col-md-5 col-sm-4 col-xs-5 control-label">Blood Group:
                                                                 </label>
                                                                 <div class="col-md-7 col-sm-8 col-xs-7">
-                                                                    {{$teacher->designation}} &nbsp
+                                                                    {{$student->email}} &nbsp
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -202,21 +209,20 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for=""
-                                                                    class="col-md-5 col-sm-4 col-xs-5 control-label">University:
+                                                                    class="col-md-5 col-sm-4 col-xs-5 control-label">Address:
                                                                 </label>
                                                                 <div class="col-md-7 col-sm-8 col-xs-7">
-                                                                    {{$teacher->university}} &nbsp
+                                                                    {{$student->address}} &nbsp
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for=""
-                                                                    class="col-md-5 col-sm-4 col-xs-5 control-label">Educational
-                                                                    Status:
+                                                                    class="col-md-5 col-sm-4 col-xs-5 control-label">Department:
                                                                 </label>
                                                                 <div class="col-md-7 col-sm-8 col-xs-7">
-                                                                    {{$teacher->educational_status}} &nbsp
+                                                                    {{$student->department_name}} &nbsp
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -288,8 +294,8 @@
 
         </div>
         <!-- Modal Start -->
-        @include('backend.teacher.modal.change_password')
-        @include('backend.teacher.modal.change_photo')
+        @include('backend.student.modal.change_password')
+        @include('backend.student.modal.change_photo')
         <!-- Modal End -->
     </div>
     <!-- /page content -->
@@ -299,6 +305,7 @@
     <script>
         $(document).ready(function(){
 
+            //show password
             $('#show').click(function(){
                 if($("#new_password").val() != '' ){
                     
@@ -308,7 +315,7 @@
                 
             });
 
-            //update Teacher
+            //update passeord
             $( "#changePass" ).click(function() {
                 var _token = '{{ csrf_token() }}';
                 var updatePassword = $('#change_password').serialize();
@@ -318,7 +325,7 @@
                         method:"post",
                         data: updatePassword,
                         success:function (response) {
-                            console.log(response);
+                            //console.log(response);
                             var html = '';
                             if(response.errors)
                             {
@@ -350,7 +357,7 @@
             $('#changePhoto_modal_form').on('submit', function(event){
                 event.preventDefault();
                 $.ajax({
-                url:"{{ route('update_photo') }}",
+                url:"{{ route('student_update_photo') }}",
                 method:"POST",
                 data:new FormData(this),
                 dataType:'JSON',

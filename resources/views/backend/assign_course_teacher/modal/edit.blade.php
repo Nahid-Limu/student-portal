@@ -1,16 +1,16 @@
-<div id="createStudent" role="dialog" aria-labelledby="modal-responsive-label" aria-hidden="true"
+<div id="editCourse" tabindex="-1" role="dialog" aria-labelledby="modal-responsive-label" aria-hidden="true"
     class="modal fade">
     <div class="modal-dialog">
-        <div class="modal-content animated bounceInLeft">
+        <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                <h4 id="modal-responsive-label" class="modal-title">Add Student</h4>
+                <h4 id="modal-responsive-label" class="modal-title">Edit Course</h4>
             </div>
-            <form id="create_student_modal_form">
+            <form id="edit_course_modal_form">
                 @csrf
                 <div class="modal-body">
                     <!-- Error list Start -->
-                    <span id="form_result"></span>
+                    <span id="edit_form_result"></span>
                     @if ($errors->any())
                     <div id="alert_message" class="alert alert-danger">
                         <ul>
@@ -24,56 +24,50 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-6">
-                                <label for="name" class="pull-left">
-                                    <h5>Name:</h5>
+                                <label for="edit_course_name" class="pull-left">
+                                    <h5>Edit Course Name:</h5>
                                 </label>
                                 <div>
-                                    <input class="form-control select2Style" type="text" name="name"
-                                        id="name">
+                                    <input class="form-control select2Style" type="text" name="edit_course_name"
+                                        id="edit_course_name" required>
                                     <b class="form-text text-danger pull-left" id="transportationError"></b>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="email" class="pull-left">
-                                    <h5>Email:</h5>
+                                <label for="edit_course_code" class="pull-left">
+                                    <h5>Edit Course Code:</h5>
                                 </label>
                                 <div>
-                                    <input class="form-control select2Style" type="email" name="email"
-                                        id="email">
+                                    <input class="form-control select2Style" type="text" name="edit_course_code"
+                                        id="edit_course_code" required>
                                     <b class="form-text text-danger pull-left" id="transportationError"></b>
                                 </div>
                             </div>
+                            
                         </div>
+                        
                         <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="phone" class="pull-left">
-                                    <h5>Depeartment:</h5>
+                            <div class="col-md-12">
+                                <label for="edit_remarks" class="pull-left">
+                                    <h5>Remarks:</h5>
                                 </label>
                                 <div>
-                                    <select id="department_id" name="department_id"  class="form-control" style="width: 100%">
-                                        <option value="">Select Department</option>
-                                    </select>
-                                    <b class="form-text text-danger pull-left" id="transportationError"></b>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="address" class="pull-left">
-                                    <h5>Admission Date:</h5>
-                                </label>
-                                <div>
-                                    <input class="form-control select2Style" type="date" name="date"
-                                        id="date">
+                                    <textarea name="edit_remarks" id="edit_remarks" cols="10" rows="3" style="width: 100%;"></textarea>
                                     <b class="form-text text-danger pull-left" id="transportationError"></b>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label for="address" class="pull-left">
-                                    <h5>Present Address:</h5>
+                                <label for="status" class="pull-left">
+                                    <h5>Status:</h5>
                                 </label>
                                 <div>
-                                    <textarea name="address" id="address" cols="10" rows="3" style="width: 100%;"></textarea>
+                                        <select class="form-control" name="status" id="status">
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+                                                
+                                            </select>
                                     <b class="form-text text-danger pull-left" id="transportationError"></b>
                                 </div>
                             </div>
@@ -81,9 +75,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" name="id" id="id">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-info pull-right" id="add"><i class="fa fa-plus"></i>
-                        Add</button>
+                    <button type="button" class="btn btn-info pull-right" id="update"><i class="fa fa-refresh"></i>
+                        Update</button>
                 </div>
             </form>
         </div>

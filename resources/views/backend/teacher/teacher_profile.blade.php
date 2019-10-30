@@ -261,7 +261,7 @@
                                                                     class="col-md-5 col-sm-4 col-xs-5 control-label">Course List:
                                                                 </label>
                                                                 <div class="col-md-7 col-sm-8 col-xs-7">
-                                                                    CSE-111, CSE-121 &nbsp
+                                                                    <h5>{{$course->courses}}</h5> &nbsp
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -298,7 +298,7 @@
     @section('extra_js')
     <script>
         $(document).ready(function(){
-
+            //show password
             $('#show').click(function(){
                 if($("#new_password").val() != '' ){
                     
@@ -308,7 +308,7 @@
                 
             });
 
-            //update Teacher
+            //update passeord
             $( "#changePass" ).click(function() {
                 var _token = '{{ csrf_token() }}';
                 var updatePassword = $('#change_password').serialize();

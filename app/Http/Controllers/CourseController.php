@@ -8,9 +8,18 @@ use Auth;
 use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Str;
+use App\Repositories\Settings;
 
 class CourseController extends Controller
 {
+    protected $settings;
+
+    public function __construct()
+    {
+        // create object of settings class
+        $this->settings = new Settings();
+    }
+
     /**
     * view course list
     */
@@ -57,7 +66,8 @@ class CourseController extends Controller
         
         $create_course = DB::table('course')->insert([
             'course_name'=>$request->course_name,
-            'course_code'=>$request->course_code, 
+            'course_code'=>$request->course_code,
+            'department_id'=>$request->department_id, 
             'remarks'=>$request->remarks,           
             'status'=>1,
             'created_by'=>Auth::user()->id,
@@ -124,5 +134,14 @@ class CourseController extends Controller
         // }
         
         
+    }
+
+    //all course
+    public function get_course()
+    {  
+        $course = $this->settings->all_course();
+        //dd($department);
+        return view('backend.ajax.get_course',compact('course'));
+       
     }
 }

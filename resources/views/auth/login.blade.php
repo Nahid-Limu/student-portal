@@ -115,13 +115,22 @@ margin-left: 4px;
 		<div class="card">
 			<div class="card-header">
 				<h3>Sign In</h3>
-				<div class="d-flex justify-content-end social_icon">
+				{{--  <div class="d-flex justify-content-end social_icon">
 					<span><i class="fab fa-facebook-square"></i></span>
 					<span><i class="fab fa-google-plus-square"></i></span>
 					<span><i class="fab fa-twitter-square"></i></span>
-				</div>
+				</div>  --}}
 			</div>
 			<div class="card-body">
+				  <div >
+						@foreach ($errors->all() as $error)
+						
+						<div class="alert alert-warning">
+							<strong>{{ $error }}</strong>
+						</div>
+						@endforeach
+				  </div>
+					
                     <form method="POST" action="{{ route('login') }}">
                             @csrf
 					<div class="input-group form-group">
@@ -137,22 +146,22 @@ margin-left: 4px;
 						</div>
 						<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 					</div>
-					<div class="row align-items-center remember">
+					{{--  <div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
-					</div>
+					</div>  --}}
 					<div class="form-group">
 						<input type="submit" value="Login" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
-			<div class="card-footer">
+			{{--  <div class="card-footer">
 				<div class="d-flex justify-content-center links">
 					Dont have an account?<a href="#">Sign Up</a>
 				</div>
 				<div class="d-flex justify-content-center">
 					<a href="#">Forgot your password?</a>
 				</div>
-			</div>
+			</div>  --}}
 		</div>
 	</div>
 </div>

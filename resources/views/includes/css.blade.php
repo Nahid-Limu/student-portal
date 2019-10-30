@@ -15,8 +15,17 @@
 <link href="{{ asset('vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 
+<link href="{{ asset('vendors/css/select2.css') }}" rel="stylesheet">
+
     <style>
         .site_title{
             text-align: center;
-        }        
+        }   
+        
+        .form-control.select2Style{
+            background-color: white;
+            border: 1px solid #aaa;
+            border-radius: 4px !important;
+            cursor: text;
+         }
     </style>

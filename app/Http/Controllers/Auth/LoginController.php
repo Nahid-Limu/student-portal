@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Auth;
 class LoginController extends Controller
 {
     /*
@@ -25,8 +25,15 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashbord';
-
+    // protected $redirectTo = '/dashbord';
+    protected function authenticated() {
+        if (Auth::user()->is_permission == 1) {
+            return redirect()->route('dashbord');
+        }else if (Auth::user()->is_permission == 2) {
+            return redirect('/home');
+        }
+    }
+    
     /**
      * Create a new controller instance.
      *
@@ -34,6 +41,9 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        // if (Auth::user()->is_permission == 1) {
+        //     $redirectTo = '/dashbord';
+        // }
         $this->middleware('guest')->except('logout');
     }
 }

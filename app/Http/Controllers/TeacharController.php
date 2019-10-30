@@ -8,17 +8,27 @@ use Auth;
 use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Str;
+use App\Repositories\Settings;
+
 class TeacharController extends Controller
 {
+    protected $settings;
+
+    public function __construct()
+    {
+        // create object of settings class
+        $this->settings = new Settings();
+    }
+
     public function teacher_view()
     {
-        $teachers = DB::table('teacher')->get(['id','name','designation','phone','address','status']);
+        $teachers = DB::table('teacher')->get(['id','cms_id','name','designation','phone','address','status']);
         //dd($teachers);
         if(request()->ajax())
         {
             return datatables()->of($teachers)
-                    ->addColumn('name', function($data){
-                            $button = '<a href="'.route('teacher_profile', base64_encode($data->id)).'" target="_blank" data-toggle="tooltip" data-placement="top" title="View Profile"><b style="color: darkcyan">'.$data->name.'</b></a>';
+                    ->addColumn('cms_id', function($data){
+                            $button = '<a href="'.route('teacher_profile', base64_encode($data->id)).'" target="_blank" data-toggle="tooltip" data-placement="top" title="View Profile"><b style="color: darkcyan">'.$data->cms_id.'</b></a>';
                             $button .= '&nbsp;&nbsp;';
                             return $button;   
                     })
@@ -28,7 +38,7 @@ class TeacharController extends Controller
                         
                         return $button;
                     })
-                    ->rawColumns(['name','action'])
+                    ->rawColumns(['cms_id','action'])
                     ->addIndexColumn()
                     ->make(true);
         }
@@ -37,8 +47,8 @@ class TeacharController extends Controller
 
 
     /**
-     * add new teacher
-     */
+    * add new teacher
+    */
     public function create_teacher(Request $request)
     {
         
@@ -142,8 +152,14 @@ class TeacharController extends Controller
     {
         $id = base64_decode($id);
         $teacher = DB::table('teacher')->where('id',$id)->first();
-        //dd($teachers);
-        return view('backend.teacher.teacher_profile',compact('teacher'));
+        $course = DB::table('teacher_course')
+        //->leftJoin('teacher','teacher_course.teacher_id','=','teacher.id')
+        ->leftJoin('course','teacher_course.course_id','=','course.id')
+        ->select(DB::raw("(GROUP_CONCAT(course.course_name SEPARATOR ' ,')) as courses"))
+        ->where('teacher_course.teacher_id',$id)
+        ->first();
+        //dd($course);
+        return view('backend.teacher.teacher_profile',compact('teacher','course'));
     }
 
     /**
@@ -179,5 +195,14 @@ class TeacharController extends Controller
         // Session::flash('success','Image Updated');
         // return redirect()->back();
         return response()->json(['success' => 'Image Updated.']);
+    }
+
+    //get all teacher
+    public function get_teacher()
+    {  
+        $teacher = $this->settings->all_teacher();
+        //dd($department);
+        return view('backend.ajax.get_teacher',compact('teacher'));
+       
     }
 }

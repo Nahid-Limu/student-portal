@@ -25,7 +25,7 @@
     
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="id" value=" {{$teacher->id}}">
+                    <input type="hidden" name="id" value=" {{$student->id}}">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-info"><i class="fa fa-refresh"></i> Update</button>
                 </div>
